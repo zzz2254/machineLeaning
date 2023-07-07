@@ -25,7 +25,11 @@ y = x.sum()
 y.backward()
 # print(x.grad)
 
-# 非标量变量的反向传播
+"""
+非标量变量的反向传播
+    函数y为标量时，能直接y.backward()
+    函数y为向量时，y.sum().backward()
+"""
 x.grad.zero_()
 y = x * x
 # print(y)
