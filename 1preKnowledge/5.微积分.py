@@ -2,7 +2,7 @@
 import numpy as np
 from matplotlib_inline import backend_inline
 from d2l import torch as d2l
-
+import matplotlib.pyplot as plt
 
 def f(x):
     return 3 * x ** 2 - 4 * x
@@ -78,3 +78,6 @@ def plot(X, Y=None, xlabel=None, ylabel=None, legend=None, xlim=None,
 
 x = np.arange(0, 3, 0.1)
 plot(x, [f(x), 2 * x - 3], 'x', 'f(x)', legend=['f(x)', 'Tangent line (x=1)'])
+
+# 导入matplotlib.pyplot库，绘图后调用matplotlib.pyplot.show()方法
+plt.show()
