@@ -4,7 +4,7 @@ from torch.distributions import multinomial
 from d2l import torch as d2l
 import matplotlib.pyplot as plt
 
-fair_probs = torch.ones([6])/6
+fair_probs = torch.ones([6]) / 6
 
 # 真实的掷骰子，1~6每个数字出现的概率为1/6，约为0.1667
 print(fair_probs)
@@ -19,15 +19,14 @@ print(multinomial.Multinomial(10, fair_probs).sample())
 
 # 模拟1000次投掷
 count = multinomial.Multinomial(1000, fair_probs).sample()
-print(count/1000)
-
+print(count / 1000)
 
 # 进行500组实验，每组抽取10个样本
 count = multinomial.Multinomial(10, fair_probs).sample((500,))
 cum_counts = count.cumsum(dim=0)
-estimates = cum_counts/cum_counts.sum(dim=1, keepdim=True)
+estimates = cum_counts / cum_counts.sum(dim=1, keepdim=True)
 
-d2l.set_figsize((6,4.5))
+d2l.set_figsize((6, 4.5))
 for i in range(6):
     d2l.plt.plot(estimates[:, i].numpy(), label=("P(die=" + str(i + 1) + ")"))
 d2l.plt.axhline(y=0.167, color='black', linestyle='dashed')
