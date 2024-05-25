@@ -80,14 +80,14 @@ Y = Y + X  # 给Y重新分配内存
 # print(id(Y) == before)
 
 Z = torch.zeros_like(Y)
-# print('id(Z):', id(Z))
-# Z[:] = X+Y
-# print('id(Z):', id(Z))
+print('id(Z):', id(Z))
+Z[:] = X+Y
+print('id(Z):', id(Z))
 
 before = id(X)
-# X[:] = X + Y
-# X -= Y
-# print(id(X) == before)
+X[:] = X + Y
+X -= Y
+print(id(X) == before)
 
 
 """

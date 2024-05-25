@@ -33,10 +33,6 @@ data_file = os.path.join('..', 'data', 'house_tiny.csv')
 data = pd.read_csv(data_file)
 print(data)  # “NaN”项代表缺失值
 
-# 删除缺失值最多的列 2种方法
-# drop_col(data)
-data = data.drop(pd.isna(data).sum(axis=0).idxmax(), axis=1)
-print(data)
 
 """
 2.处理缺失值： 
@@ -44,22 +40,27 @@ print(data)
     删除法 直接忽略缺失值
 """
 # data共3列，inputs为前2列， outputs为后1列
-# inputs, outputs = data.iloc[:, 0:2], data.iloc[:, 2]
-# print(inputs)
-# print(outputs)
+inputs, outputs = data.iloc[:, 0:2], data.iloc[:, 2]
+print(inputs)
+print(outputs)
 
-# 同一列的均值替换“NaN”项，因为第一列的均值为3，因此NaN被改为3
-# inputs = inputs.fillna(inputs.mean())
-# print(inputs)
+# 插值法 同一列的均值替换“NaN”项，因为第一列的均值为3，因此NaN被改为3
+inputs = inputs.fillna(inputs.mean())
+print(inputs)
+
+# 删除法 删除缺失值最多的列 2种方法
+# drop_col(data)
+# data = data.drop(pd.isna(data).sum(axis=0).idxmax(), axis=1)
+# print(data)
 
 # Alley列只接受两种类型的类别值“Pave”和“NaN”,将此列转换为两列“Alley_Pave”和“Alley_nan”
 # Alley_Pave”的值设置为1，“Alley_nan”的值设置为0
-# inputs = pd.get_dummies(inputs, dummy_na=True)
-# print(inputs)
+inputs = pd.get_dummies(inputs, dummy_na=True)
+print(inputs)
 
 """
 3.转换为张量格式
 """
-# x, y = torch.tensor(inputs.values), torch.tensor(outputs.values)
-# print(x)
-# print(y)
+x, y = torch.tensor(inputs.values), torch.tensor(outputs.values)
+print(x)
+print(y)
