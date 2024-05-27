@@ -4,12 +4,13 @@ from d2l import torch as d2l
 import matplotlib.pyplot as plt
 
 """
-生成 y=Xw+b+噪声
+生成 y=Xw+b+c c是噪声
 """
 def synthetic_data(w, b, num_examples):
-    X = torch.normal(0, 1, (num_examples, len(w)))
-    y = torch.matmul(X, w) + b
+    X = torch.normal(0, 1, (num_examples, len(w)))  # 均值为0 方差为1的随机数，num_examples行，w列
+    y = torch.matmul(X, w) + b   # matmul() 矩阵相乘
     y += torch.normal(0, 0.01, y.shape)
+    # -1为自动计算，1为固定，即列向量为1
     return X, y.reshape((-1, 1))
 
 
@@ -38,9 +39,9 @@ def data_iter(batch_size, features, labels):
 
 # 测试
 batch_size = 10
-# for X, y in data_iter(batch_size, features, labels):
-#     print(X, '\n', y)
-#     break
+for X, y in data_iter(batch_size, features, labels):
+    print(X, '\n', y)
+    break
 
 """ 
 初始化模型参数 

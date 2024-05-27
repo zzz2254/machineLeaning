@@ -1,22 +1,29 @@
 import torch
 
 # 测试二阶求导
-# x = torch.arange(4, dtype=torch.float32)
-x = torch.tensor(4, dtype=torch.float32)
-x.requires_grad_(True)
-print(x)
+# # x = torch.arange(4, dtype=torch.float32)
+# x = torch.tensor(4, dtype=torch.float32)
+# x.requires_grad_(True)
+# print(x)
+#
+# y = x*x*x
+# # print(y)
+# # 求二阶导，在第一次求导保存了正向传播图
+# y.backward(retain_graph=True)
+# print(x.grad)
+# # 验证梯度
+# # print(x.grad == 3*x**2)
+# # 二阶求导
+# y.backward()
+# print(x.grad)
+#
+#
+# x.grad.zero_()
+# print(x.grad)
 
-y = x*x*x
-# print(y)
-# 求二阶导，在第一次求导保存了正向传播图
-y.backward(retain_graph=True)
-print(x.grad)
-# 验证梯度
-# print(x.grad == 3*x**2)
-# 二阶求导
-y.backward()
-print(x.grad)
 
-
-x.grad.zero_()
-print(x.grad)
+# X = torch.normal(0, 1, (3, 2))
+w = torch.normal(0, 0.01, size=(2, 1), requires_grad=True)
+print(w)
+b = torch.zeros(1, requires_grad=True)
+print(b)
