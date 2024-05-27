@@ -36,6 +36,10 @@ y = x * x
 y.sum().backward()
 # print(x.grad)
 
+# x.grad.zero_()
+# y.backward() # y为向量会报错，因为grad只能计算标量
+# print(y.grad)
+
 """
 分离计算
 """
@@ -46,8 +50,6 @@ u = y.detach()
 z = u * x
 z.sum().backward()
 # print(x.grad)
-# print(u)
-# print(z)
 # print(x.grad == u)
 
 # 求 y = x*x 的导数
