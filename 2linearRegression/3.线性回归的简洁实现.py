@@ -55,14 +55,16 @@ for epoch in range(num_epochs):
     for X, y in data_iter:
         l = loss(net(X), y)
         trainer.zero_grad()
-        l.backword()
+        l.backward()
         trainer.step()
     l = loss(net(features), labels)
     print(f'epoch{epoch + 1}, loss {l:f}')
 
 
 w = net[0].weight.data
-print('w的估计误差：', true_w - w.reshape(true_w.shape))
 b = net[0].bias.data
+print(f'训练的w为{w}')
+print(f'训练的b为{b}')
+print('w的估计误差：', true_w - w.reshape(true_w.shape))
 print('b的估计误差：', true_b - b)
 
